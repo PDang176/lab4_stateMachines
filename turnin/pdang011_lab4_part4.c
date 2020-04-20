@@ -60,7 +60,7 @@ void Tick(){
 				state = Wait_Release;
 				checkY = 0x00;
 			}
-			else if(~PINA){ // Checks if all buttons were released
+			else if((PINA & 0xFF) == 0x00){ // Checks if all buttons were released
 				state = Wait_Press;
 			}
 			else{
