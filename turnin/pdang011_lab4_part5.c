@@ -80,6 +80,12 @@ void Tick(){
 			else if((PINA & 0xFF) == 0x00){ // Checks if all buttons were released
 				state = Wait_Press;
 			}
+			else if(PINA & 0x80){ // Checks if PA7 (door lock button) is pressed
+                                state = Wait_Release;
+                                checkPXYX = 0x00;
+                                doorOpen = 0x00;
+                                PORTB = doorOpen;
+                        }
 			else{
 				state = Wait_Release;
 			}
