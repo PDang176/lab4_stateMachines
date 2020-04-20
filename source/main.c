@@ -65,7 +65,11 @@ void Tick(){
 			}
 			break;
 		case Wait_Release:
-			if((checkPXYX & 0x01) && (PINA & 0xFB)){ // Checks if a button other than the currently needed button in the combination was pressed (Currently '#')
+			if((PINA & 0x04) && ((PINA & 0xFB) == 0x00)){ // Checks if PA2 ('#' button) is pressed and is the only one pressed
+				state = Wait_Release;
+				checkPXYX = 0x01;
+			}
+			else if((checkPXYX & 0x01) && (PINA & 0xFB)){ // Checks if a button other than the currently needed button in the combination was pressed (Currently '#')
 				state = Wait_Release;
 				checkPXYX = 0x00;
 			}

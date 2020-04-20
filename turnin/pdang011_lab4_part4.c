@@ -56,7 +56,11 @@ void Tick(){
 			}
 			break;
 		case Wait_Release:
-			if((PINA & 0xFB) != 0x00){ // Checks if a button that is not '#' is pressed
+			if((PINA & 0x04) && ((PINA & 0xFB) == 0x00)){ // Checks if PA2 ('#' button) is pressed and is the only one pressed
+                                state = Wait_Release;
+                                checkY = 0x01;
+                        }
+			else if((PINA & 0xFB) != 0x00){ // Checks if a button that is not '#' is pressed
 				state = Wait_Release;
 				checkY = 0x00;
 			}
